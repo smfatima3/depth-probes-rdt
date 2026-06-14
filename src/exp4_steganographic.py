@@ -12,58 +12,6 @@ non-linearly combined to extract it. If the recurrent loop is the site
 of useful computation, then depth probes should outperform input probes
 in this setting.
 
-Steganographic task
--------------------
-A prompt of the form
-
-    [BOS] x_0 x_1 x_2 x_3 x_4 x_5 + ? [SEP]
-
-where each x_i is a digit in {0,...,9}. The gold answer is
-
-    gold = (x_p1 + x_p2) mod 10
-
-where p1, p2 are FIXED designated positions (e.g., p1=1, p2=4) that the
-model must learn to attend to. The "leak" is steganographic: every
-prompt contains the answer encoded as the sum of two designated digits,
-but no single digit IS the answer.
-
-A linear probe on input embeddings (a single weighted sum of position-
-embedded digit features) can only recover the sum of two positions if
-it knows WHICH two positions to sum -- but a linear classifier over
-mean-pooled embeddings averages all positions together, destroying the
-positional information needed. By contrast, a depth probe operates on
-hidden states AFTER attention has had several iterations to attend
-selectively to the designated positions. If the loop is doing useful
-work, depth probes should pull ahead of input probes here.
-
-This is the cleanest contrast we can construct without changing the
-architecture or RL algorithm: same model, same GRPO setup, only the
-task changes.
-
-Hypothesis (pre-registered)
----------------------------
-H1 (separation): On the steganographic task, the maximum depth-probe
-   AUROC exceeds the maximum input-layer probe AUROC by at least 0.10.
-H2 (locality):   Among the 8 loop depths, AUROC is non-uniform; at
-   least one depth significantly outperforms depth 1.
-
-Outputs
--------
-    steg_results.json
-    steg_results.csv
-    summary.txt
-
-Usage
------
-End-to-end (train + probe):
-    python exp4_steganographic.py train-baseline \\
-        --out-dir checkpoints/stego_baseline \\
-        --seed 0
-
-    python exp4_steganographic.py probe \\
-        --base-ckpt checkpoints/stego_baseline/pretrained.pt \\
-        --rl-ckpt   checkpoints/stego_baseline/rl_step_01300.pt \\
-        --out-dir   results/exp4_steganographic
 """
 
 from __future__ import annotations
