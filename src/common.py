@@ -3,32 +3,11 @@ common.py
 =========
 Shared utilities for the depth-localized reward hacking experiments.
 
-Contents
---------
-1. Reproducibility helpers (seeding, device selection).
-2. ArithmeticLeakTask: dataset generation + tokenizer + reward function.
-3. TinyOpenMythos: ~20M-param recurrent-depth transformer with
-   per-iteration hidden-state extraction. Architecture follows the
-   OpenMythos / Huginn pattern: 2 prelude blocks, 1 recurrent block
-   unrolled `max_loop_iters` times, 2 coda blocks, with input-injection
-   recurrence h_{t+1} = A h_t + B e + Transformer(h_t, e) and spectral
-   radius < 1 stability constraint.
-4. GRPOTrainer: minimal Group Relative Policy Optimization implementation
-   with optional depth-anchored KL penalty. Written from scratch
-   (rather than using trl.GRPOTrainer) because the recurrent architecture
-   and per-depth hidden-state hooks require non-standard control flow.
-5. train_baseline_hacking_model(): produces the RL checkpoint that
-   exp1 and exp2 analyze.
-
 This module is intended to be imported by exp1_probes.py, exp2_patching.py,
 and exp3_mitigation.py. It can also be run directly to produce the
 baseline checkpoint:
 
     python common.py --train-baseline --out-dir checkpoints/baseline
-
-Tested with:
-    torch==2.5.1, transformers==4.46.0, scikit-learn==1.5.2,
-    scipy==1.14.1, numpy==1.26.4
 """
 
 from __future__ import annotations
