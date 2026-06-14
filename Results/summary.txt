@@ -1,0 +1,15 @@
+VERDICT: WEAK_SUCCESS_DEPTH_ADDS_VALUE_NO_LOCALITY
+Max depth-probe AUROC: 1.0000 (at depth 1)
+Input-layer AUROC:     0.4940 [0.4689, 0.5190]
+H1: depth - input gap = +0.5060  (threshold 0.1, PASS)
+H2: locality (max - depth1) = +0.0000  (threshold 0.1, FAIL)
+
+Per-depth AUROC [95% BCa CI]:
+  depth= 1  task=1.0000 [nan, nan]  ctrl=0.5083  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 2  task=1.0000 [nan, nan]  ctrl=0.5066  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 3  task=1.0000 [nan, nan]  ctrl=0.5025  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 4  task=1.0000 [nan, nan]  ctrl=0.5021  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 5  task=1.0000 [nan, nan]  ctrl=0.5007  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 6  task=1.0000 [nan, nan]  ctrl=0.4993  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 7  task=1.0000 [nan, nan]  ctrl=0.4965  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)
+  depth= 8  task=1.0000 [nan, nan]  ctrl=0.4954  base=1.0000  gap_vs_input=+0.5060 (p_BH=0.0005)  gap_vs_base=+0.0000 (p_BH=1)

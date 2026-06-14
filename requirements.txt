@@ -1,0 +1,32 @@
+# =============================================================================
+# requirements.txt
+# Tested on Python 3.10-3.12 with CUDA 12.1+ on A10 (24GB).
+# Versions pinned to a known-stable combination as of May 2026.
+# =============================================================================
+
+# Core deep learning
+torch>=2.5.0,<2.12
+numpy>=1.24,<3.0
+
+# HuggingFace stack (pinned to v4 series; v5 has breaking API changes)
+transformers>=4.46.0,<5.0
+tokenizers>=0.20
+accelerate>=1.0,<2.0
+safetensors>=0.4.0
+
+# Probing and classical ML
+scikit-learn>=1.5,<1.8     # 1.8 deprecates the `penalty` argument
+scipy>=1.13,<1.18           # bootstrap and permutation_test stable from 1.13
+statsmodels>=0.14           # multipletests for BH-correction
+
+# Data and logging
+pandas>=2.0
+tqdm>=4.66
+einops>=0.8
+
+# Plotting (optional, but used by the result-summary scripts)
+matplotlib>=3.7
+seaborn>=0.13
+
+# Reproducibility
+pyyaml>=6.0
