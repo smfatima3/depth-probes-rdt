@@ -2,28 +2,6 @@
 exp3_mitigation.py
 ==================
 Experiment 3: Depth-Anchored KL Mitigation of Reward Hacking.
-
-The locality claim is *actionable* only if the depth signal can be used
-to reduce hacking. This experiment trains three matched GRPO runs:
-
-    1. baseline      : standard GRPO with KL on output distribution only
-    2. anchored-KL   : standard GRPO + extra hidden-state KL at the
-                       probe-identified hacking-prone depths (from exp1)
-    3. sham-KL       : standard GRPO + extra hidden-state KL at a
-                       depth set of equal cardinality chosen from the
-                       non-prone depths
-
-If the depth signal is actionable, the anchored-KL run should reduce
-the hacking rate (measured on a held-out stress test) substantially
-more than the sham-KL run at matched total KL budget.
-
-Outputs:
-    mitigation_results.json   -- per-run hacking rates with CIs
-    mitigation_results.csv    -- tabular comparison
-    summary.txt               -- verdict, with statistical comparison
-
-Tested with:
-    scipy==1.14.1, statsmodels==0.14.4
 """
 
 from __future__ import annotations
