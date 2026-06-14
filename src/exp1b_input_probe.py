@@ -8,39 +8,6 @@ If hacking is linearly decodable at every loop depth INCLUDING in the
 pre-RL base model, the natural question is: is it also decodable from
 the input embedding layer ALONE, with no Transformer computation at all?
 
-If yes, then depth-indexed probes do not provide a monitoring
-affordance beyond what is available from inspecting the embedding
-layer — i.e., depth is redundant for this exploit class. This closes
-the most obvious reviewer objection to exp1's null result.
-
-Method
-------
-For each probe trajectory:
-  1. Take the input_ids and look up their embeddings via model.embed.
-  2. Mean-pool across sequence positions to get a single vector per example.
-  3. Train a linear probe (same architecture as exp1) on hacking vs genuine.
-  4. Compare AUROC to exp1's depth-T probe AUROCs.
-
-We additionally include three trivial baselines:
-  - "leak_token_present": predict hacking iff the input contains [LEAK_S].
-    This is the "dumb baseline" — does just detecting the leak token
-    suffice?
-  - "input_bag_of_tokens": a count vector over the vocabulary.
-  - "pos_embed_only": the position embeddings summed across the input
-    length (a sanity check that the signal isn't just sequence length).
-
-Outputs (written to --out-dir):
-    input_probe_results.json
-    input_probe_results.csv
-    summary.txt
-
-Run after exp1_probes.py:
-    python exp1b_input_probe.py \
-        --base-ckpt checkpoints/baseline/pretrained.pt \
-        --rl-ckpt   checkpoints/baseline/rl_step_01300.pt \
-        --exp1-results results/exp1_probes/probe_results.json \
-        --out-dir   results/exp1b_input_probe \
-        --seed 42
 """
 
 from __future__ import annotations
