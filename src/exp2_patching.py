@@ -9,33 +9,6 @@ core claim is: if hacking is *represented* at depth d, then transplanting
 h_d from a hacked trajectory into a genuine trajectory should flip the
 output to the hacked answer at that depth substantially more than at
 non-prone depths.
-
-Protocol
---------
-For matched pairs of prompts (same problem, sampled once with leak and
-once without):
-
-  1. Run the leaked prompt → "hacked" trajectory, store h_1...h_T
-  2. Run the unleaked prompt → "genuine" trajectory, store h_1...h_T
-  3. At each depth d in {1, ..., T}:
-       a) FORWARD PATCH: replace h_d in the genuine forward pass with
-          h_d from the hacked run, complete the forward pass, decode.
-          Flip = output matches the gold answer (i.e., the hack
-          succeeded in installing the answer the leak would have given).
-       b) REVERSE PATCH (control): replace h_d in the hacked forward
-          pass with h_d from the genuine run. Flip = output no longer
-          matches gold.
-  4. Per-depth flip rate is recorded with a Wilson-score 95% CI.
-  5. Compared across depths with a chi-square + pairwise Fisher exact
-     tests, BH-corrected.
-
-Outputs:
-    patching_results.json    -- per-depth flip rates, CIs, p-values
-    patching_results.csv     -- tabular version for plotting
-    summary.txt              -- human-readable verdict
-
-Tested with:
-    scipy==1.14.1, numpy==1.26.4, statsmodels==0.14.4
 """
 
 from __future__ import annotations
