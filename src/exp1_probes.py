@@ -2,31 +2,6 @@
 exp1_probes.py
 ==============
 Experiment 1: Depth-Indexed Linear Probes for Reward-Hacking Detection.
-
-This script:
-  1. Loads the RL-finetuned checkpoint (the "hacked" model) and its
-     pretrained predecessor (the "base" model) from common.train_baseline.
-  2. Collects matched hacked/genuine trajectories on a held-out probe set.
-  3. Extracts hidden states h_1, ..., h_T at the first-answer-token position
-     from BOTH models on the same trajectories.
-  4. Trains 3 families of linear probes at every depth t in {1, ..., T}:
-        - task probe:     true hacking label, RL-model hidden states
-        - control probe:  random label,        RL-model hidden states
-        - base probe:     true hacking label, pre-RL model hidden states
-  5. Runs statistical analysis:
-        - Bootstrap 95% CIs on per-depth AUROC (BCa method)
-        - Permutation test: task probe AUROC > control probe AUROC, per depth
-        - Benjamini-Hochberg correction across the T comparisons
-        - Pre-registered decision rules (see SUCCESS_CRITERIA)
-
-Outputs (written to --out-dir):
-    probe_results.json    -- per-depth AUROC, CIs, p-values, decisions
-    probe_results.csv     -- tabular version for plotting
-    probe_weights.npz     -- saved linear-probe weights for inspection
-    summary.txt           -- human-readable verdict
-
-Tested with:
-    scikit-learn==1.5.2, scipy==1.14.1, numpy==1.26.4
 """
 
 from __future__ import annotations
