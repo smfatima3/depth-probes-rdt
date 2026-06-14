@@ -225,23 +225,8 @@ Full limitations discussion is in §7 of the paper.
 
 If you use this code or build on these results, please cite:
 
-```bibtex
-@inproceedings{anonymous2026depth,
-  title     = {When Depth Adds Nothing: A Negative Result on Probing Recurrent-Depth Transformers},
-  author    = {Anonymous},
-  booktitle = {Proceedings of the MusIML Workshop at ICML 2026},
-  year      = {2026},
-  note      = {Poster}
-}
-```
 
 (Citation will be updated with author names and venue once the ACL ARR commitment cycle completes.)
-
----
-
-## Disclosure
-
-This work used the Anthropic Claude assistant for code drafting, statistical-analysis scaffolding, and prose editing in accordance with the ACL ARR policy on use of generative AI tools. All experimental design decisions, hypothesis formulation, and scope-of-claims judgments are the authors' own. See §8 (Acknowledgements) of the paper for the full disclosure.
 
 ---
 
